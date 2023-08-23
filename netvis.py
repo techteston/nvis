@@ -144,7 +144,10 @@ if file is not None:
 #    st.balloons()
     try:
         var = 4
+        st.write("In here")
+        st.write(var)
         df_products = pd.read_excel(file,sheet_name="ProductMaster")
+        st.write(len(df_products))
         df_customers = pd.read_excel(file,sheet_name="CustomerMaster")
         df_dcs = pd.read_excel(file,sheet_name="DCMaster")
         df_factories = pd.read_excel(file,sheet_name="FactoryMaster")
