@@ -7,6 +7,11 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
+hide_st_style = """
+<style>
+footer {visibility: hidden;}
+</style>
+"""
 
 st.set_page_config(page_title='Network Visualisation',page_icon=":tada:",layout="wide")
 
@@ -126,12 +131,14 @@ def define_size_and_color(fd_data,label_colour,label_size):
 with st.container():
     st.title('Network Visualisation')
     st.write("Visualizing the Entire Supply Chain")
+    var = 1
 
 file = st.file_uploader("Upload an Excel File",type=['xlsx'])
 if file is not None:
     st.success('File Uploaded Successfully!', icon="✅")
 #    st.balloons()
     try:
+        var = 4
         df_products = pd.read_excel(file,sheet_name="ProductMaster")
         df_customers = pd.read_excel(file,sheet_name="CustomerMaster")
         df_dcs = pd.read_excel(file,sheet_name="DCMaster")
@@ -159,7 +166,7 @@ if file is not None:
                     st.dataframe(data=df_customerinventory, width=None, height=None,hide_index=1)
     except:
         st.error('Upload Failed')
-    if len(df_customers) > 0:
+    if var > 2:
         with st.container():
                 prd_sel,cus_sel,dc_sel = st.columns((2,4,2))
                 custselect = ""
