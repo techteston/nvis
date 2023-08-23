@@ -7,6 +7,8 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
+st.set_page_config(page_title='Network Visualisation',page_icon=":tada:",layout="wide")
+
 hide_st_style = """
 <style>
 footer {visibility: hidden;}
@@ -14,7 +16,7 @@ footer {visibility: hidden;}
 """
 st.markdown(hide_st_style,unsafe_allow_html=True)
 
-st.set_page_config(page_title='Network Visualisation',page_icon=":tada:",layout="wide")
+
 
 def get_lat_lon(fd_data,fd_mast,fv_data_field,fv_mast_field):
     fd_mast = fd_mast[[fv_mast_field,"Latitude","Longitude"]]
@@ -128,6 +130,8 @@ def define_size_and_color(fd_data,label_colour,label_size):
     fd_data["node_colour"] = fd_data["node_color_norm"].apply(value_to_color)
     
     return(fd_data)
+
+
 
 with st.container():
     st.title('Network Visualisation')
