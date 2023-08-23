@@ -133,7 +133,7 @@ with st.container():
     st.write("Visualizing the Entire Supply Chain")
     var = 1
 
-file = st.file_uploader("Upload an Excel File",type=['xlsx'])
+file = st.file_uploader("Upload an Excel File",type=['csv','xlsx'])
 if file is not None:
     st.success('File Uploaded Successfully!', icon="✅")
 #    st.balloons()
