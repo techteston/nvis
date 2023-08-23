@@ -12,6 +12,7 @@ hide_st_style = """
 footer {visibility: hidden;}
 </style>
 """
+st.markdown(hide_st_style,unsafe_allow_html=True)
 
 st.set_page_config(page_title='Network Visualisation',page_icon=":tada:",layout="wide")
 
