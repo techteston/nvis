@@ -142,38 +142,32 @@ file = st.file_uploader("Upload an Excel File",type=['csv','xlsx'])
 if file is not None:
     st.success('File Uploaded Successfully!', icon="✅")
 #    st.balloons()
-    try:
-        var = 4
-        st.write("In here")
-        st.write(var)
-        df_products = pd.read_excel(file,sheet_name="ProductMaster")
-        st.write(len(df_products))
-        df_customers = pd.read_excel(file,sheet_name="CustomerMaster")
-        df_dcs = pd.read_excel(file,sheet_name="DCMaster")
-        df_factories = pd.read_excel(file,sheet_name="FactoryMaster")
+    var = 4
+    df_products = pd.read_excel(file,sheet_name="ProductMaster")
+    df_customers = pd.read_excel(file,sheet_name="CustomerMaster")
+    df_dcs = pd.read_excel(file,sheet_name="DCMaster")
+    df_factories = pd.read_excel(file,sheet_name="FactoryMaster")
 
-        df_dccustomerinfo = pd.read_excel(file,sheet_name="DCCustomer")
-        df_factorydcinfo = pd.read_excel(file,sheet_name="FactoryDC")
+    df_dccustomerinfo = pd.read_excel(file,sheet_name="DCCustomer")
+    df_factorydcinfo = pd.read_excel(file,sheet_name="FactoryDC")
 
-        df_customerinventory = pd.read_excel(file,sheet_name="CustomerInventory")
-        df_dcinventory = pd.read_excel(file,sheet_name="DCInventory")
+    df_customerinventory = pd.read_excel(file,sheet_name="CustomerInventory")
+    df_dcinventory = pd.read_excel(file,sheet_name="DCInventory")
 
-        li_fields = [""]
-        li_dates = ["Order Date","Demand Date","Delivery Date"]
-        df_salestransactions = pd.read_excel(file,sheet_name="SalesTransactions",parse_dates=li_dates)
-        li_dates = ["Order Date","Demand Date","Delivery Date"]
-        df_disttransactions = pd.read_excel(file,sheet_name="DistributionTransactions",parse_dates=li_dates)
-        with st.expander("Uploaded Data", expanded=False):
-            with st.container():
-                cust_mast,cust_inv = st.columns((2,1))
-                with cust_mast:
-                    st.caption("Customers")
-                    st.dataframe(data=df_customers, width=None, height=None,hide_index=1)
-                with cust_inv:
-                    st.caption("Customer Inventory")
-                    st.dataframe(data=df_customerinventory, width=None, height=None,hide_index=1)
-    except:
-        st.error('Upload Failed')
+    li_fields = [""]
+    li_dates = ["Order Date","Demand Date","Delivery Date"]
+    df_salestransactions = pd.read_excel(file,sheet_name="SalesTransactions",parse_dates=li_dates)
+    li_dates = ["Order Date","Demand Date","Delivery Date"]
+    df_disttransactions = pd.read_excel(file,sheet_name="DistributionTransactions",parse_dates=li_dates)
+    with st.expander("Uploaded Data", expanded=False):
+        with st.container():
+            cust_mast,cust_inv = st.columns((2,1))
+            with cust_mast:
+                st.caption("Customers")
+                st.dataframe(data=df_customers, width=None, height=None,hide_index=1)
+            with cust_inv:
+                st.caption("Customer Inventory")
+                st.dataframe(data=df_customerinventory, width=None, height=None,hide_index=1)
     if var > 2:
         with st.container():
                 prd_sel,cus_sel,dc_sel = st.columns((2,4,2))
@@ -307,8 +301,9 @@ if file is not None:
             fig2 = go.Figure(data=[df_nodes,*dt_edges], layout=layout)
             fig2.update_layout(height=600)
             st.plotly_chart(fig2,height=600)
-    else:
+    try:
         st.write('')
-
+    except:
+        st.error('Upload Failed')
 else:
     st.write('')
